@@ -112,3 +112,19 @@ class PrimeNewsFeed(cmd.Cmd):
         else:
             print("We are having trouble posting your comment")
         print()
+
+    @docopt_cmd()
+    def do_view_comments(self, args):
+        """usage: view_comments <post_id>"""
+
+        post_id = args["<post_id>"]
+        url = 'https://jsonplaceholder.typicode.com/posts/' + \
+            str(post_id) + '/comments'
+        response = requests.get(
+            url, headers={"Content-Type": "application/json"})
+        if response.status_code == 200:
+            for comment in response.json():
+                print('Name: {}\nBody: {}\n'.format(
+                    comment["name"], comment['body']))
+        else:
+            print("You might be having trouble with your internet connection")
