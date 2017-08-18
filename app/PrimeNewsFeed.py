@@ -2,7 +2,7 @@
 Usage:
 primfeed view_feed
 primfeed post <title> <body>
-primfeed comment <postId> <title> <body>
+primfeed add_comment <postId> <title> <body>
 options:
 quit    to exit the application
 """
@@ -78,7 +78,7 @@ class PrimeNewsFeed(cmd.Cmd):
         else:
             print("Please check your internet connection")
 
-     @docopt_cmd
+    @docopt_cmd
     def do_post(self, args):
         """Usage: post <title> <body>"""
         print(args)
@@ -93,4 +93,22 @@ class PrimeNewsFeed(cmd.Cmd):
             print("Your data has been posted")
         else:
             print("You have an error somewhere in your code")
+        print()
+
+    @docopt_cmd
+    def do_add_comment(self, args):
+        """Usage: comment <postId> <title> <body>"""
+        postId = args["<postId>"]
+        title = args["<title>"]
+        body = args["<body>"]
+
+        data = dict(postId=postId, title=title, body=body)
+        headers = {"Content-Type": "application/json", "Accept": "text/plain"}
+
+        comment_url = self.apiURL + "comments"
+        r = requests.post(comment_url, data=json.dumps(data), headers=headers)
+        if int(r.status_code) == 201:
+            print("Your comment has been registered /posted")
+        else:
+            print("We are having trouble posting your comment")
         print()
