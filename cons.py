@@ -11,7 +11,7 @@ def view_posts():
         print("Check internet connection")
 
 def add_post(title, body):
-    url='http://34.207.10.230:3000/posts'
+    url = 'http://34.207.10.230:3000/posts'
     response = requests.post(url, data = { 'title':title, 'body':body,'userId': 1 })
     if response.status_code == 200:
         post = response.json()
