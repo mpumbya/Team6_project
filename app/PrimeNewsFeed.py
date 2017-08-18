@@ -3,6 +3,7 @@ Usage:
 primfeed view_feed
 primfeed post <title> <body>
 primfeed add_comment <postId> <title> <body>
+primfeed view_comments <post_id>
 options:
 quit    to exit the application
 """
@@ -128,3 +129,9 @@ class PrimeNewsFeed(cmd.Cmd):
                     comment["name"], comment['body']))
         else:
             print("You might be having trouble with your internet connection")
+
+    def do_quit(self, args):
+        """Usage: quit"""
+        os.system('cls')
+        print('Application Exiting')
+        exit()
