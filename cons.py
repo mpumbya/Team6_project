@@ -16,8 +16,16 @@ def add_posts():
     pass
 
 
-def view_comment_on_post():
-    pass
+def add_posts():
+     url='https://jsonplaceholder.typicode.com/posts/'
+    response=requests.get(url, headers={"Content-Type":"application/json"})
+    if response.status_code == 200:
+        print "Add Post"
+        print ('Post |  Body')
+        for comment in response.json():
+            print ('{} | {}'.format(comment['name'], comment['body']))
+    else:
+        print ("Check internet connection")
 
 
 def add_comment_on_post():
