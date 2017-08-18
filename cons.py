@@ -65,3 +65,4 @@ if __name__ == '__main__':
     view_posts()
     view_comment_on_post(1)
     add_posts()
+    add_comment_on_post()
