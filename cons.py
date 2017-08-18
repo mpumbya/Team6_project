@@ -43,6 +43,21 @@ def view_comment_on_post(post_id):
 
 
 def add_comment_on_post():
+    
+    url = 'http://34.207.10.230:3000/comments'
+    name = "Polo"
+    email = "polo@points.sc"
+    body = "We rock, as always"
+    
+    response = requests.post(
+        url, data = { "postId":1, "name":name, "email":email,
+        "body":body }
+    )
+    if response.status_code == 200:
+        print ('{} | {}'.format(post['name'], post['body']))
+    else:
+        print ("Check internet connection")
+        
     pass
 
 
