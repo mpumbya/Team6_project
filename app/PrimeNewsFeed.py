@@ -61,15 +61,15 @@ class PrimeNewsFeed(cmd.Cmd):
                           font.renderText("A Primitive News Feed"), __doc__))
 
     def __init__(self):
-        # self.apiURL = "http://34.207.10.230:3000/"
+        self.apiURL = "https://jsonplaceholder.typicode.com/posts"
         super().__init__()
 
     @docopt_cmd()
-    def view_feed(self, args):
+    def do_view_feed(self, args):
         """Usage: view_feed"""
-        url = 'https://jsonplaceholder.typicode.com/posts'
+
         response = requests.get(
-            url, headers={"Content-Type": "application/json"})
+            self.apiURL, headers={"Content-Type": "application/json"})
         if response.status_code == 200:
             for post in response.json():
                 print('Title: {}\nBody: {}\n'.format(
