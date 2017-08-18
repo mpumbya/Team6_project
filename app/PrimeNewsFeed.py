@@ -77,3 +77,20 @@ class PrimeNewsFeed(cmd.Cmd):
                 print()
         else:
             print("Please check your internet connection")
+
+     @docopt_cmd
+    def do_post(self, args):
+        """Usage: post <title> <body>"""
+        print(args)
+        body = args['<body>']
+        title = args['<title>']
+
+        data = dict(title=title, body=body)
+        headers = {"Content-Type": "application/json", "Accept": "text/plain"}
+        post_url = self.apiURL + "posts"
+        resp = requests.post(post_url, data=json.dumps(data), headers=headers)
+        if int(resp.status_code) == 201:
+            print("Your data has been posted")
+        else:
+            print("You have an error somewhere in your code")
+        print()
