@@ -61,7 +61,7 @@ class PrimeNewsFeed(cmd.Cmd):
                           font.renderText("A Primitive News Feed"), __doc__))
 
     def __init__(self):
-        self.apiURL = "http://34.207.10.230:3000/"
+        # self.apiURL = "http://34.207.10.230:3000/"
         super().__init__()
 
     @docopt_cmd()
