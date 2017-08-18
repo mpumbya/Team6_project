@@ -65,7 +65,7 @@ class PrimeNewsFeed(cmd.Cmd):
         self.apiURL = "https://jsonplaceholder.typicode.com/posts"
         super().__init__()
 
-    @docopt_cmd()
+    @docopt_cmd
     def do_view_feed(self, args):
         """Usage: view_feed"""
 
@@ -82,13 +82,12 @@ class PrimeNewsFeed(cmd.Cmd):
     @docopt_cmd
     def do_post(self, args):
         """Usage: post <title> <body>"""
-        print(args)
         body = args['<body>']
         title = args['<title>']
 
         data = dict(title=title, body=body)
         headers = {"Content-Type": "application/json", "Accept": "text/plain"}
-        post_url = self.apiURL + "posts"
+        post_url = "http://34.207.10.230:3000/posts"
         resp = requests.post(post_url, data=json.dumps(data), headers=headers)
         if int(resp.status_code) == 201:
             print("Your data has been posted")
@@ -98,7 +97,7 @@ class PrimeNewsFeed(cmd.Cmd):
 
     @docopt_cmd
     def do_add_comment(self, args):
-        """Usage: comment <postId> <title> <body>"""
+        """Usage: add_comment <postId> <title> <body>"""
         postId = args["<postId>"]
         title = args["<title>"]
         body = args["<body>"]
@@ -106,7 +105,7 @@ class PrimeNewsFeed(cmd.Cmd):
         data = dict(postId=postId, title=title, body=body)
         headers = {"Content-Type": "application/json", "Accept": "text/plain"}
 
-        comment_url = self.apiURL + "comments"
+        comment_url = "http://34.207.10.230:3000/comments"
         r = requests.post(comment_url, data=json.dumps(data), headers=headers)
         if int(r.status_code) == 201:
             print("Your comment has been registered /posted")
@@ -114,7 +113,7 @@ class PrimeNewsFeed(cmd.Cmd):
             print("We are having trouble posting your comment")
         print()
 
-    @docopt_cmd()
+    @docopt_cmd
     def do_view_comments(self, args):
         """usage: view_comments <post_id>"""
 
