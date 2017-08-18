@@ -14,19 +14,17 @@ def view_posts():
 
 
 def add_posts():
-    
-    url='http://34.207.10.230:3000/posts'
-    title = 'Team 6'
-    body = 'Top post'
-    response = requests.post(url, data = { 'title':title, 'body':body,'userId': 1 })
-    post = response.json()
-    
+     url='https://jsonplaceholder.typicode.com/posts/'
+    response=requests.get(url, headers={"Content-Type":"application/json"})
     if response.status_code == 200:
-        print ('{} | {}'.format(post['title'], post['body']))
+        print "Add Post"
+        print ('Post |  Body')
+        for post in response.json():
+            print ('{} | {}'.format(post['name'], post['body']))
     else:
         print ("Check internet connection")
         
-    pass
+   
 
 
 def view_comment_on_post(post_id):
@@ -58,7 +56,7 @@ def add_comment_on_post():
     else:
         print ("Check internet connection")
         
-    pass
+   
 
 
 if __name__ == '__main__':
