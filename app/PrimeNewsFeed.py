@@ -63,3 +63,17 @@ class PrimeNewsFeed(cmd.Cmd):
     def __init__(self):
         self.apiURL = "http://34.207.10.230:3000/"
         super().__init__()
+
+    @docopt_cmd()
+    def view_feed(self, args):
+        """Usage: view_feed"""
+        url = 'https://jsonplaceholder.typicode.com/posts'
+        response = requests.get(
+            url, headers={"Content-Type": "application/json"})
+        if response.status_code == 200:
+            for post in response.json():
+                print('Title: {}\nBody: {}\n'.format(
+                    post['title'], post['body']))
+                print()
+        else:
+            print("Please check your internet connection")
