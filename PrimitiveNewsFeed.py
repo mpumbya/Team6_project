@@ -5,7 +5,8 @@ primfeed post <title> <body>
 primfeed add_comment <postId> <title> <body>
 primfeed view_comments <post_id>
 options:
-quit    to exit the application
+quit          to exit the application
+-h --help     Show this screen.
 """
 
 import cmd
