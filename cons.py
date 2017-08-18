@@ -12,9 +12,6 @@ def view_posts():
         print ("Check internet connection")
 
 
-def add_posts():
-    pass
-
 
 def add_posts():
      url='https://jsonplaceholder.typicode.com/posts/'
