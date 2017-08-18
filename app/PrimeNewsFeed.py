@@ -135,3 +135,5 @@ class PrimeNewsFeed(cmd.Cmd):
         os.system('cls')
         print('Application Exiting')
         exit()
+
+PrimeNewsFeed().cmdloop()
